@@ -46,7 +46,8 @@ router.post("/login", (req, res) => {
 
 function signToken(user) {
   const payload = {
-    userId: user.id
+    id: user.id,
+    department: user.department
   };
   const secret = process.env.JWT_SECRET || "Secret Squirrel";
 

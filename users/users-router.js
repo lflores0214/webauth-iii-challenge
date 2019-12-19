@@ -5,9 +5,9 @@ const restricted = require("../auth/restricted-middleware");
 const checkDepartment = require("../auth/checkDepartment-middleWare");
 
 router.get("/", restricted, (req, res) => {
-  Users.find()
+  Users.find(req.user.department)
     .then(users => {
-      res.status(200).json(users);
+      res.status(200).json({ User: req.user.username, users });
     })
     .catch(error =>
       res
@@ -18,5 +18,6 @@ router.get("/", restricted, (req, res) => {
         })
     );
 });
+
 
 module.exports = router;

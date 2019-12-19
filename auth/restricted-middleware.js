@@ -12,7 +12,8 @@ module.exports = (req, res, next) => {
           message: "invalid token"
         });
       } else {
-        req.token = token;
+        req.user = { username: token.username, department: token.department };
+        // req.token = token;
         next();
       }
     });
